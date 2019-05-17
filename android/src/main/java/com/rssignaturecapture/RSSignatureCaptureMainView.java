@@ -28,6 +28,7 @@ import android.widget.LinearLayout;
 import android.app.Activity;
 import android.content.pm.ActivityInfo;
 import java.lang.Boolean;
+import java.util.Date;
 
 public class RSSignatureCaptureMainView extends LinearLayout implements OnClickListener,RSSignatureCaptureView.SignatureCallback {
   LinearLayout buttonsLayout;
@@ -57,10 +58,6 @@ public class RSSignatureCaptureMainView extends LinearLayout implements OnClickL
 
     setLayoutParams(new android.view.ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
         ViewGroup.LayoutParams.MATCH_PARENT));
-  }
-
-  public RSSignatureCaptureView getSignatureView() {
-    return signatureView;
   }
 
   public void setSaveFileInExtStorage(Boolean saveFileInExtStorage) {
@@ -142,7 +139,7 @@ public class RSSignatureCaptureMainView extends LinearLayout implements OnClickL
     String root = Environment.getExternalStorageDirectory().toString();
 
     // the directory where the signature will be saved
-    File myDir = new File(root + "/saved_signature");
+    File myDir = new File(root + "/Pictures/Data2GoImages");
 
     // make the directory if it does not exist yet
     if (!myDir.exists()) {
@@ -150,7 +147,8 @@ public class RSSignatureCaptureMainView extends LinearLayout implements OnClickL
     }
 
     // set the file name of your choice
-    String fname = "signature.png";
+    // String fname = "signature.png";
+    String fname = "signature_" + new Date().getTime() + ".png";
 
     // in our case, we delete the previous file, you can remove this
     File file = new File(myDir, fname);
